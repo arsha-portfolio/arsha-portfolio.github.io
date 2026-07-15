@@ -51,7 +51,7 @@ const projects = [
     external: true,
     logo: lilaiLogo,
     logoAlt: "Lilai Ireland logo",
-    logoTone: "dark",
+    logoTone: "light",
   },
 ];
 
@@ -97,7 +97,7 @@ const evidence = [
     body: "Built and operated a real 0→1 service venture.",
     logo: lilaiLogo,
     logoAlt: "Lilai Ireland logo",
-    logoTone: "dark",
+    logoTone: "light",
   },
 ];
 
@@ -318,7 +318,7 @@ function App() {
                 <article key={project.title} className="glass-panel grid gap-9 rounded-2xl p-6 md:grid-cols-[minmax(0,1fr)_18rem] md:p-9">
                   <div>
                     <div
-                      className={`mb-7 flex h-16 w-40 items-center justify-center rounded-2xl border p-3 ${
+                      className={`mb-7 flex h-20 w-48 items-center justify-center rounded-2xl border p-3.5 ${
                         project.logoTone === "dark"
                           ? "border-bone/10 bg-charcoal"
                           : "border-bone/10 bg-bone"
@@ -392,7 +392,7 @@ function App() {
               {evidence.map((item) => (
                 <article key={item.label} className="rounded-2xl border border-bone/10 bg-bone/[0.035] p-7">
                   <div
-                    className={`mb-6 flex h-12 w-28 items-center justify-center rounded-xl border p-2.5 ${
+                    className={`mb-6 flex h-14 w-32 items-center justify-center rounded-xl border p-2.5 ${
                       item.logoTone === "dark" ? "border-bone/10 bg-charcoal" : "border-bone/10 bg-bone"
                     }`}
                   >
