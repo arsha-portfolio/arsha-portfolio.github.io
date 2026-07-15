@@ -16,6 +16,7 @@ A React + Vite + TypeScript + Tailwind CSS portfolio homepage for GitHub Pages.
 - `src/App.tsx` — portfolio content and section structure
 - `src/index.css` — Tailwind layers and shared global styles
 - `assets/arsha-hsia-portrait.jpg` — optimized portrait image used in the hero
+- `assets/logo-*.png` — selected company and venture logos used in project and evidence cards
 - `tailwind.config.ts` — Tailwind content paths, font families, and palette tokens
 
 ## Links To Confirm Before Publishing
@@ -24,10 +25,11 @@ Already set:
 
 - CV: `assets/arsha-hsia-cv-product-operations.pdf`
 - Email: `mailto:arsha.hsia@gmail.com`
+- LinkedIn: `https://www.linkedin.com/in/arsha-hsia/`
+- Lilai Ireland Instagram: `https://www.instagram.com/lilaiireland/`
 
 Still placeholders in `src/App.tsx`:
 
-- LinkedIn: `https://www.linkedin.com/in/arsha-hsia-placeholder/`
 - SOLUS PDF: `#solus-pdf-placeholder`
 
 ## Local Development
@@ -69,7 +71,7 @@ npm run preview
 
 You can buy a domain from providers such as Namecheap, Cloudflare Registrar, Google Domains/Squarespace Domains, or GoDaddy.
 
-For an apex domain such as `arshahsia.com`, add these GitHub Pages DNS records at your domain provider:
+For the apex domain `arsha-hsia.com`, add these GitHub Pages DNS records at your domain provider:
 
 ```text
 A     @     185.199.108.153
@@ -78,7 +80,7 @@ A     @     185.199.110.153
 A     @     185.199.111.153
 ```
 
-For `www.arshahsia.com`, add:
+For `www.arsha-hsia.com`, add:
 
 ```text
 CNAME www   arsha-portfolio.github.io

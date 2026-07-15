@@ -1,12 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import cvUrl from "../assets/arsha-hsia-cv-product-operations.pdf";
+import acekingLogo from "../assets/logo-aceking.png";
+import intercomLogo from "../assets/logo-intercom.png";
+import lilaiLogo from "../assets/logo-lilai.png";
+import solusLogo from "../assets/logo-solus.png";
 import portraitUrl from "../assets/arsha-hsia-portrait.jpg";
 
 const links = {
   cv: cvUrl,
-  linkedin: "https://www.linkedin.com/in/arsha-hsia-placeholder/",
+  linkedin: "https://www.linkedin.com/in/arsha-hsia/",
   email: "mailto:arsha.hsia@gmail.com",
   intercom: "https://arsha-portfolio.github.io/intercom-case-study/",
+  lilai: "https://www.instagram.com/lilaiireland/",
   solus: "#solus-pdf-placeholder",
 };
 
@@ -19,6 +24,9 @@ const projects = [
     href: links.intercom,
     cta: "Read Case Study",
     external: true,
+    logo: intercomLogo,
+    logoAlt: "Intercom logo",
+    logoTone: "light",
   },
   {
     title: "Scaling AI Content Without Breaking User Trust",
@@ -28,6 +36,9 @@ const projects = [
     tags: ["User Research", "Workflow Design", "AI Adoption", "Business Strategy"],
     href: links.solus,
     cta: "View Case Study",
+    logo: solusLogo,
+    logoAlt: "SOLUS logo",
+    logoTone: "light",
   },
   {
     title: "Building a Trust-Based Education Service from 0→1",
@@ -35,8 +46,12 @@ const projects = [
     description:
       "Building customer journeys, operational workflows, AI-assisted automation, and productised advisory services for students relocating to Ireland.",
     tags: ["0→1 Operations", "GTM", "Automation", "Founder"],
-    href: "#experience",
-    cta: "View Evidence",
+    href: links.lilai,
+    cta: "View Lilai Instagram",
+    external: true,
+    logo: lilaiLogo,
+    logoAlt: "Lilai Ireland logo",
+    logoTone: "dark",
   },
 ];
 
@@ -59,18 +74,30 @@ const evidence = [
   {
     label: "AceKing",
     body: "Handled real platform complexity through moderation quality, risk investigation, incident triage, and onboarding systems.",
+    logo: acekingLogo,
+    logoAlt: "AceKing logo",
+    logoTone: "light",
   },
   {
     label: "SOLUS",
     body: "Turned research and user insight into an AI-assisted operational framework.",
+    logo: solusLogo,
+    logoAlt: "SOLUS logo",
+    logoTone: "light",
   },
   {
     label: "Intercom Case Study",
     body: "Demonstrated product judgement through routing logic, trade-offs, metrics, guardrails, and kill criteria.",
+    logo: intercomLogo,
+    logoAlt: "Intercom logo",
+    logoTone: "light",
   },
   {
     label: "Lilai Ireland",
     body: "Built and operated a real 0→1 service venture.",
+    logo: lilaiLogo,
+    logoAlt: "Lilai Ireland logo",
+    logoTone: "dark",
   },
 ];
 
@@ -290,6 +317,15 @@ function App() {
               {projects.map((project) => (
                 <article key={project.title} className="glass-panel grid gap-9 rounded-2xl p-6 md:grid-cols-[minmax(0,1fr)_18rem] md:p-9">
                   <div>
+                    <div
+                      className={`mb-7 flex h-16 w-40 items-center justify-center rounded-2xl border p-3 ${
+                        project.logoTone === "dark"
+                          ? "border-bone/10 bg-charcoal"
+                          : "border-bone/10 bg-bone"
+                      }`}
+                    >
+                      <img src={project.logo} alt={project.logoAlt} className="max-h-full max-w-full object-contain" />
+                    </div>
                     <p className="mb-5 text-sm font-semibold text-bluegrey">{project.context}</p>
                     <h3 className="font-instrument max-w-3xl text-3xl leading-tight text-bone md:text-5xl">{project.title}</h3>
                     <p className="mt-6 max-w-2xl text-base leading-8 text-bone/68">{project.description}</p>
@@ -355,6 +391,13 @@ function App() {
             <div className="grid gap-4 md:grid-cols-2">
               {evidence.map((item) => (
                 <article key={item.label} className="rounded-2xl border border-bone/10 bg-bone/[0.035] p-7">
+                  <div
+                    className={`mb-6 flex h-12 w-28 items-center justify-center rounded-xl border p-2.5 ${
+                      item.logoTone === "dark" ? "border-bone/10 bg-charcoal" : "border-bone/10 bg-bone"
+                    }`}
+                  >
+                    <img src={item.logo} alt={item.logoAlt} className="max-h-full max-w-full object-contain" />
+                  </div>
                   <h3 className="text-lg font-bold text-bone">{item.label}</h3>
                   <p className="mt-4 text-sm leading-7 text-bone/64">{item.body}</p>
                 </article>
