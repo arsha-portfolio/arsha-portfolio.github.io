@@ -3,6 +3,7 @@ import cvUrl from "../assets/arsha-hsia-cv-product-operations.pdf";
 import coverIntercom from "../assets/cover-intercom.jpg";
 import coverLilai from "../assets/cover-lilai.jpg";
 import coverSolus from "../assets/cover-solus.jpg";
+import coverTriage from "../assets/cover-triage.jpg";
 import portraitCutout from "../assets/arsha-hsia-portrait-cutout.webp";
 
 const links = {
@@ -16,7 +17,21 @@ const links = {
   solus: "https://canva.link/m3cy5y3ldrojhd5",
 };
 
-const projects = [
+type Project = {
+  title: string;
+  context: string;
+  description: string;
+  outcome: string;
+  tags: string[];
+  href: string;
+  cta: string;
+  external?: boolean;
+  cover: string;
+  coverAlt: string;
+  video?: string;
+};
+
+const projects: Project[] = [
   {
     title: "Designing Trust-Sensitive AI Escalation",
     context: "Intercom Fin — Independent Product Case Study",
@@ -28,6 +43,21 @@ const projects = [
     external: true,
     cover: coverIntercom,
     coverAlt: "Cover of the Trust-Sensitive Escalation case study for Intercom Fin",
+  },
+  {
+    title: "Zero-Touch AI Feedback Triage",
+    context: "Lilai Ireland — Automation Case Study",
+    description:
+      "A Google Forms → Make.com → OpenAI → Notion pipeline that turns unstructured student feedback into a structured, SLA-routed product backlog — designed and shipped in one weekend, with zero engineering resources.",
+    outcome:
+      "100% of manual triage eliminated (~10 hrs/week) · P1 alerts routed to the triage board in minutes · NPS-by-vendor evidence powering commission negotiations",
+    tags: ["AI Automation", "Prompt Guardrails", "SLA Design", "Data Pipeline"],
+    href: "https://youtu.be/lk1QPOcE60o",
+    cta: "Watch the 4-min Demo",
+    external: true,
+    cover: coverTriage,
+    coverAlt: "Demo video still showing the Make.com scenario connecting Google Forms, OpenAI, and Notion",
+    video: "lk1QPOcE60o",
   },
   {
     title: "Scaling AI Content Without Breaking User Trust",
@@ -47,7 +77,7 @@ const projects = [
     context: "Lilai Ireland — Live Venture",
     description:
       "Building customer journeys, operational workflows, AI-assisted automation, and productised advisory services for students relocating to Ireland.",
-    outcome: "~350% growth in one quarter · 80%+ consultation conversion · ~10 hrs/week recovered through AI-assisted triage",
+    outcome: "~350% growth in one quarter · 3,000+ followers · 50+ high-quality clients converted in the first year",
     tags: ["0→1 Operations", "GTM", "Automation", "Founder"],
     href: links.lilai,
     cta: "Try the Live Assessment",
@@ -111,6 +141,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
   const povRef = useRef<HTMLElement | null>(null);
   const povBgRef = useRef<HTMLDivElement | null>(null);
 
@@ -446,22 +477,59 @@ function App() {
                   data-reveal
                   data-reveal-delay={`${index * 80}ms`}
                 >
-                  <a
-                    className="focus-ring flex items-center overflow-hidden border-b border-bone/10 bg-black/25 md:border-b-0 md:border-r"
-                    href={project.href}
-                    target={project.external ? "_blank" : undefined}
-                    rel={project.external ? "noopener noreferrer" : undefined}
-                    aria-label={`${project.cta}: ${project.title}`}
-                    tabIndex={-1}
-                  >
-                    <img
-                      src={project.cover}
-                      alt={project.coverAlt}
-                      className="aspect-video w-full object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </a>
+                  {project.video && playingVideo === project.video ? (
+                    <div className="flex items-center overflow-hidden border-b border-bone/10 bg-black md:border-b-0 md:border-r md:border-bone/10">
+                      <iframe
+                        className="aspect-video w-full"
+                        src={`https://www.youtube-nocookie.com/embed/${project.video}?autoplay=1&rel=0`}
+                        title={`${project.title} — demo video`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : project.video ? (
+                    <button
+                      type="button"
+                      onClick={() => setPlayingVideo(project.video ?? null)}
+                      className="focus-ring group/play relative flex cursor-pointer items-center overflow-hidden border-b border-bone/10 bg-black/25 md:border-b-0 md:border-r"
+                      aria-label={`Play demo video: ${project.title}`}
+                    >
+                      <img
+                        src={project.cover}
+                        alt={project.coverAlt}
+                        className="aspect-video w-full object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span className="absolute inset-0 grid place-items-center bg-charcoal/20 transition duration-300 group-hover/play:bg-charcoal/40">
+                        <span className="flex h-20 w-20 items-center justify-center rounded-full border border-bone/30 bg-charcoal/70 backdrop-blur-md transition duration-300 group-hover/play:scale-110 group-hover/play:border-moss/70">
+                          <span aria-hidden="true" className="ml-1 text-2xl text-bone">
+                            ▶
+                          </span>
+                        </span>
+                      </span>
+                      <span className="absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-charcoal/75 px-4 py-1.5 text-xs font-bold text-bone/90 backdrop-blur-md">
+                        4-min demo
+                      </span>
+                    </button>
+                  ) : (
+                    <a
+                      className="focus-ring flex items-center overflow-hidden border-b border-bone/10 bg-black/25 md:border-b-0 md:border-r"
+                      href={project.href}
+                      target={project.external ? "_blank" : undefined}
+                      rel={project.external ? "noopener noreferrer" : undefined}
+                      aria-label={`${project.cta}: ${project.title}`}
+                      tabIndex={-1}
+                    >
+                      <img
+                        src={project.cover}
+                        alt={project.coverAlt}
+                        className="aspect-video w-full object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
+                  )}
 
                   <div className="flex flex-col p-6 md:p-9">
                     <p className="mb-4 text-sm font-semibold text-bluegrey">{project.context}</p>
@@ -485,17 +553,39 @@ function App() {
                           </li>
                         ))}
                       </ul>
-                      <a
-                        className="focus-ring inline-flex min-h-11 items-center gap-2 whitespace-nowrap text-sm font-bold text-moss transition hover:text-bone"
-                        href={project.href}
-                        target={project.external ? "_blank" : undefined}
-                        rel={project.external ? "noopener noreferrer" : undefined}
-                      >
-                        {project.cta}
-                        <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                          ↗
+                      {project.video ? (
+                        <span className="flex flex-wrap items-center gap-5">
+                          <button
+                            type="button"
+                            onClick={() => setPlayingVideo(project.video ?? null)}
+                            className="focus-ring inline-flex min-h-11 items-center gap-2 whitespace-nowrap text-sm font-bold text-moss transition hover:text-bone"
+                          >
+                            {project.cta}
+                            <span aria-hidden="true">▶</span>
+                          </button>
+                          <a
+                            className="focus-ring inline-flex min-h-11 items-center gap-1 whitespace-nowrap text-sm font-semibold text-bone/55 transition hover:text-bone"
+                            href={project.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            YouTube
+                            <span aria-hidden="true">↗</span>
+                          </a>
                         </span>
-                      </a>
+                      ) : (
+                        <a
+                          className="focus-ring inline-flex min-h-11 items-center gap-2 whitespace-nowrap text-sm font-bold text-moss transition hover:text-bone"
+                          href={project.href}
+                          target={project.external ? "_blank" : undefined}
+                          rel={project.external ? "noopener noreferrer" : undefined}
+                        >
+                          {project.cta}
+                          <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                            ↗
+                          </span>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </article>
