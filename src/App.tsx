@@ -98,7 +98,7 @@ const projects: Project[] = [
     cta: "Try the Live Assessment",
     external: true,
     cover: coverLilai,
-    coverAlt: "Result screen of the Lilai Ireland departure-readiness assessment, classifying the user's readiness stage with recommended next steps",
+    coverAlt: "Lilai Ireland's co-founders on the site homepage, promoting the free departure-readiness assessment",
   },
 ];
 
