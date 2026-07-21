@@ -10,7 +10,7 @@ import portraitCutout from "../assets/arsha-hsia-portrait-cutout.webp";
 const links = {
   cv: cvUrl,
   linkedin: "https://www.linkedin.com/in/arsha-hsia/",
-  github: "https://github.com/arsha-hsia",
+  github: "https://github.com/arsha-portfolio",
   email: "mailto:arsha.hsia@gmail.com",
   emailAddress: "arsha.hsia@gmail.com",
   intercom: "https://arsha-portfolio.github.io/intercom-case-study/",
