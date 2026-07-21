@@ -4,6 +4,7 @@ import coverIntercom from "../assets/cover-intercom.jpg";
 import coverLilai from "../assets/cover-lilai.jpg";
 import coverSolus from "../assets/cover-solus.jpg";
 import coverTriage from "../assets/cover-triage.jpg";
+import coverCrm from "../assets/cover-crm.jpg";
 import portraitCutout from "../assets/arsha-hsia-portrait-cutout.webp";
 
 const links = {
@@ -58,6 +59,20 @@ const projects: Project[] = [
     cover: coverTriage,
     coverAlt: "Demo video still showing the Make.com scenario connecting Google Forms, OpenAI, and Notion",
     video: "lk1QPOcE60o",
+  },
+  {
+    title: "Designing a Lead-to-Enrolment CRM",
+    context: "Lilai Ireland — Salesforce Case Study",
+    description:
+      "Translating a fragmented, multi-channel student journey into a structured Salesforce workflow — from lead qualification through consultation, school selection, and enrolment.",
+    outcome:
+      "9-stage pipeline with entry/exit criteria per stage · Lead → Account/Contact/Opportunity data model · Reports & dashboards built on synthetic data",
+    tags: ["Salesforce", "CRM Data Modelling", "Process Mapping", "B2B2C Operations"],
+    href: "/salesforce-crm/",
+    cta: "Read Case Study",
+    external: false,
+    cover: coverCrm,
+    coverAlt: "Salesforce Setup home screen for the Lilai Ireland CRM sandbox",
   },
   {
     title: "Scaling AI Content Without Breaking User Trust",
@@ -582,7 +597,7 @@ function App() {
                         >
                           {project.cta}
                           <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                            ↗
+                            {project.external ? "↗" : "→"}
                           </span>
                         </a>
                       )}
