@@ -371,7 +371,7 @@ function App() {
 
         <div
           id="mobile-menu"
-          className={`fixed right-0 top-0 z-[60] h-screen w-[85%] max-w-[340px] border-l border-bone/10 bg-charcoal/96 px-7 pb-8 pt-24 backdrop-blur-xl transition-transform duration-300 ease-out md:hidden ${
+          className={`fixed right-0 top-0 z-[60] h-screen w-[85%] max-w-[340px] border-l border-bone/10 bg-ink px-7 pb-8 pt-24 shadow-[-16px_0_48px_rgba(0,0,0,0.5)] transition-transform duration-300 ease-out md:hidden ${
             menuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
